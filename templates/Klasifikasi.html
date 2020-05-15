@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="{{url_for('static', filename='assets/img/fav.png')}}">
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Klasifikasi Penyakit Jagung Berdasarkan Pola Daun Menggunakan Metode Laplacian of Gaussian dan Naive Bayes
+                    </title>
+
+    <!--
+			Google Font
+			============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500i" rel="stylesheet">
+
+    <!--
+			CSS
+			============================================= -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/linearicons.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/nice-select.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/main.css')}}">
+
+    <script src="{{url_for('static', filename='assets/greyscale_citra/js/button.js')}}" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <!-- Start Header Area -->
+    <header id="header">
+        <div class="container">
+            <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo">
+                    <a href="../"><img src="{{url_for('static', filename='assets/img/logo.png')}}" alt="" title="" /></a>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+<!--                        <li><a href="../">Home</a></li>-->
+<!--                       <li><a href="PCA">PCA</a></li>-->
+<!--                        <li><a href="LDA">LDA</a></li>-->
+
+<!--                        <li class="menu-has-children"><a href="">Tugas</a>-->
+<!--                            <ul>-->
+<!--                                <li><a href="task_linear_regression">Linear Regression</a></li>-->
+<!--                                <li><a href="#">Logistic Regression</a></li>-->
+<!--                                <li><a href="cart">CART</a></li>-->
+<!--                                <li><a href="kmeans">K-means Clustering - Segmentasi Citra</a></li>-->
+<!--                                <li><a href="#">Artificial Neural Networks</a></li>-->
+<!--                            </ul>-->
+<!--                        </li>-->
+<!--                        <li><a href="contact.html">Contact</a></li>-->
+                    </ul>
+                </nav>
+                <!-- #nav-menu-container -->
+            </div>
+        </div>
+    </header>
+
+    <!-- End Header Area -->
+
+
+    <section class="banner-area relative">
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Klasifikasi Penyakit Jagung Berdasarkan Pola Daun Menggunakan Metode Laplacian of Gaussian dan Naive Bayes
+                    </h1>
+                    <!-- <p>In the history of modern astronomy, there is probably no one greater leap forward than the building and launch of
+						the space telescope.</p> -->
+                    <br><br><br>
+                    <div class="courses pt-20">
+                        <a href="#dataset" data-wow-duration="1s" data-wow-delay=".6s" class="primary-btn transparent mr-10 mb-10 wow fadeInDown">Dataset</a>
+                        <a href="#akurasi" data-wow-duration="1s" data-wow-delay=".9s" class="primary-btn transparent mr-10 mb-10 wow fadeInDown">Akurasi</a>
+                        <a href="#testing" data-wow-duration="1s" data-wow-delay=".3s" class="primary-btn transparent mr-10 mb-10 wow fadeInDown">Testing</a>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+
+
+    <!-- End Feature Area -->
+ <!-- Start dataset Area -->
+    <section class="faculty-area section-gap" id="dataset">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center">
+                        <h1>Dataset</h1>
+                        <!-- <h4> Brief Description</h4> -->
+                        <p> <b>Dataset Daun Jagung https://github.com/ibnujakaria/dataset-daun-jagung</b></p>
+                        <table style="text-align: center;" >
+                            <thead ><tr><td>Daun Sehat</td><td>Daun Sakit</td></tr> </thead>
+
+                            <tr><td>
+                                <img src="static/assets/Klasifikasi/dataset/sehat.jpg"> <td>
+                                <img src="static/assets/Klasifikasi/dataset/sakit.jpg"> </td></tr>
+                            <tr><td>
+                                59 Data</td>
+                                <td>57 Data
+                            </td>
+
+                            </tr>
+                        </table>
+
+                        <p> <br><br><br><b>Laplacian of Gaussian</b></p>
+                        <table style="text-align: center;" >
+
+                            <tr><td><img src="static/assets/Klasifikasi/dataset/Original1.jpg"> <td>Citra RGB</td>
+                            </tr>
+                            <tr>
+                                <td><img src="static/assets/Klasifikasi/dataset/Gray_asli1.jpg"> <td>Konversi Citra RGB ke Greyscale</td>
+                            </tr>
+                            <tr>
+                                <td><img src="static/assets/Klasifikasi/dataset/Gray_edit1.jpg"> <td>Konversi Citra RGB ke Greyscale Modif (Komposisi 0.2989 * R + 0.5870 * G + 0.1140 * B)</td>
+                            </tr>
+                             <tr>
+                                <td><img src="static/assets/Klasifikasi/dataset/LOG_asli1.jpg"> <td>Hasil LoG Citra Greyscale</td>
+                            </tr>
+                            <tr>
+                                <td><img src="static/assets/Klasifikasi/dataset/LOG_edit1.jpg"> <td>Hasil LoG Citra Greyscale Modif</td>
+                            </tr>
+                        </table>
+
+                         <p> <br><br><br><b></b></p>
+                        <table style="text-align: center;" >
+                            <tr>
+                                <td> </td><td>Citra <td>Mean Pixel</td><td>Std Pixel</td>
+                            </tr>
+                             <tr>
+                                <td>LoG Citra Greyscale</td><td><img src="static/assets/Klasifikasi/dataset/LOG_asli1.jpg"> <td>20.683</td><td>32.132</td>
+                            </tr>
+                            <tr>
+                                <td>LoG Citra Greyscale Modif</td><td><img src="static/assets/Klasifikasi/dataset/LOG_edit1.jpg"> <td>44.161</td><td>50.149</td>
+                            </tr>
+                        </table>
+                         <p> <br><br><br><b>Fitur yang Diambil</b></p>
+                        <table style="text-align: center;" >
+                            <tr>
+                                <td>LoG Citra Greyscale Mean Pixel</td><td>LoG Citra Greyscale Std Pixel</td> <td>LoG Citra Greyscale Modif Mean Pixel</td><td>LoG Citra Greyscale Modif Std Pixel</td>
+                            </tr></table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End dataset Area -->
+
+
+    <!-- Start dataset Area -->
+    <section class="faculty-area section-gap" id="akurasi">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center">
+                        <h1>Akurasi</h1>
+                        <!-- <h4> Brief Description</h4> -->
+
+                       <form id='upload-form-1' method='POST' enctype="multipart/form-data" class="">
+                            <!-- <div class='form-group'>
+                                <label for='split_data_test'>Persentase Data Test (dalam persen)</label>
+                                <input type='text' class='form-control' id='split_data_test' name='query_split_data_test' placeholder="Presentasi Data Test (dalam persen)" required>
+                            </div> -->
+                            <div class="form-group">
+                                <label for="komposisi" id='komposisiLabel'>Komposisi</label>
+                                <input type="range" class="custom-range" min="5" max="95" step="1" value='80' id="komposisi" name='komposisi'>
+                            </div>
+                            <script>
+                                var komposisi = document.getElementById('komposisi');
+                                var komposisiLabel = document.getElementById('komposisiLabel')
+                                komposisiLabel.innerHTML = 'Komposisi : ' + komposisi.value + '% training, ' + (100 - komposisi.value) + '% testing'
+                                komposisi.onchange = function() {
+                                    var testing = 100 - this.value
+                                    komposisiLabel.innerHTML = 'Komposisi : ' + this.value + '% training, ' + testing + '% testing';
+                                }
+                                komposisi.oninput = function() {
+                                    var testing = 100 - this.value
+                                    komposisiLabel.innerHTML = 'Komposisi : ' + this.value + '% training, ' + testing + '% testing';
+                                }
+                            </script>
+
+
+
+                            <input id='mode' name='mode' type='hidden' value='akurasi'>
+                            <button type="submit" class="btn btn-primary">Test Akurasi</button>
+
+                        </form>
+                        {% if mode=="akurasi" %}
+
+                         <table style="text-align: center; margin-top: 10%;" >
+                        <tr>
+                         <td>
+                             Jumlah Data Test
+                         </td>
+                            <td>
+                                Index Data Test
+                            </td>
+                        </tr>
+
+                             <tr>
+                                 <td>{{ jml_data_test }}</td><td>{{ index_data_test }}</td></tr>
+                             <tr>
+                             <td>Jumlah Data Train</td>
+                             <td>Index Data Train</td>
+                        </tr>
+                                 <tr><td>{{ jml_data_train }}</td><td>{{ index_data_train }}</td>
+                             </tr>
+                         </table>
+
+
+                         <table style="text-align: center; margin-top: 10%;" >
+                         <thead style="background: #18bc9c;color: white; ">
+                         <td>
+                             No
+                         </td>
+                         <td>
+                             Citra
+                         </td>
+                         <td>
+                             Hasil
+                         </td>
+                         </thead>
+                            {% for data_test_i in range(0, len_data_test) %}
+                             <tr>
+                                 <td> {{data_test_i+1}}</td>
+                                 <td>
+                                     <img style="width: 100%;" class="img-responsive thumbnail" src="{{url_for('static', filename='assets/Klasifikasi/')}}{{ temp_img[data_test_i] }}">
+
+                                 </td>
+                                 <td> {{ hasil_pred[data_test_i] }} </td>
+                             </tr>
+                              {% endfor %}
+                             <tr>
+                            <td>Benar</td>
+                             <td colspan="2" > {{benar}}</td></tr>
+                             <tr>
+                            <td>Salah</td>
+                             <td colspan="2" > {{salah}}</td></tr>
+                        <tr>
+                            <td>Jumlah Data Test</td>
+                             <td colspan="2" > {{len_data_test}}</td></tr>
+                             <tr>
+                            <td>Akurasi</td>
+                             <td colspan="2" > {{akurasi}}</td></tr>
+                         </table>
+
+                         {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End dataset Area -->
+
+    <!-- Start Faculty Area -->
+    <section class="faculty-area section-gap" id="testing">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center">
+                        <h1>Testing</h1>
+
+                        <style type="text/css">
+                table {
+  border-collapse: collapse;
+}
+
+td {
+  border: 1px solid #18bc9c;
+  width: 10%;
+  height: 10%;
+  padding: 8px;
+}
+
+
+td:hover {
+  background: #18bc9c;
+  color: white;
+}
+            </style>
+
+
+                        <form id="upload-form" method="POST" enctype="multipart/form-data" class="">
+
+<!--                            <label>Pilih Citra</label>-->
+<!--                            <div class="input-group" style="display: block;-->
+<!--    								margin-left: auto;-->
+<!--    								margin-right: auto;">-->
+<!--                                <span class="input-group-btn">-->
+<!--									<span class="btn btn-default btn-file">-->
+<!--									Browse… <input type="file" name="query_img" id="imgInp">-->
+<!--									</span>-->
+<!--                                </span>-->
+<!--                            </div>-->
+
+
+<!--                            <label>Pilih Metode</label>-->
+                            <div class='form-group'>
+
+                                <div class='form-check-inline'>
+                                    <label class='form-check-label'>
+                                    <input type='radio' class='form-check-input' id='pilih_image_1' name='pilih_metode' value='1' checked><img src="static/assets/Klasifikasi/testing/1.jpg">
+                                </label>
+                                </div>
+                                <div class='form-check-inline'>
+                                    <label class='form-check-label'>
+                                        <input type='radio' class='form-check-input' id='pilih_image_2' name='pilih_metode' value='2' ><img src="static/assets/Klasifikasi/testing/2.jpg">
+                                    </label>
+                                </div>
+                                 <div class='form-check-inline'>
+                                    <label class='form-check-label'>
+                                        <input type='radio' class='form-check-input' id='pilih_image_3' name='pilih_metode' value='3' ><img src="static/assets/Klasifikasi/testing/3.jpg">
+                                    </label>
+                                </div>
+                                 <div class='form-check-inline'>
+                                    <label class='form-check-label'>
+                                        <input type='radio' class='form-check-input' id='pilih_image_4' name='pilih_metode' value='4' ><img src="static/assets/Klasifikasi/testing/4.jpg">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <input id='mode1' name='mode' type='hidden' value='testing'>
+                            <button type="submit" class="btn btn-primary">Klasifikasi</button>
+                        </form>
+
+
+
+
+                     {% if mode=="testing" %}
+                    <div class="row justify-content-center">
+<!--                <div class="col-lg-1">-->
+                    <div class="section-title text-center">
+                         <table style="text-align: center; margin-top: 10%;" >
+
+                         <td>
+                             Hasil
+                         </td>
+                             <td>Nilai Fitur</td>
+                             <td>Nilai Probabilitas</td>
+                         <td>
+                             Keterangan
+                         </td>
+                         </thead>
+
+                             <tr>
+
+                                 <td>
+<!--                                     <a href="{{url_for('static', filename='assets/Klasifikasi/hasil/')}}{{ img_hasil }}.png">-->
+                                <img style="width: 100%;" class="img-responsive thumbnail" src="{{url_for('static', filename='assets/Klasifikasi/testing/')}}{{ img }}.jpg">
+                            </a></td> <td>{{ nilai_fitur }}</td><td>{{ nilai_prob }}</td>
+                                 <td> {{ hasil_label }} </td>
+                             </tr>
+                         </table>
+                    </div></div></div></div></div></div></div></section>
+
+
+
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- End Faculty Area -->
+
+
+    <!-- Start Footer Area -->
+    <footer class="footer-area section-gap" style="padding: 20px;">
+        <div class="container">
+            <div class="footer-bottom row align-items-center">
+                <p class="footer-text m-0 col-lg-8 col-md-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+                <div class="col-lg-4 col-md-12 footer-social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-behance"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer Area -->
+
+    <!-- ####################### Start Scroll to Top Area ####################### -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"></a>
+    </div>
+    <!-- ####################### End Scroll to Top Area ####################### -->
+
+    <script src="{{url_for('static', filename='assets/js/vendor/jquery-2.2.4.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='assets/js/vendor/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script src="{{url_for('static', filename='assets/js/easing.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/hoverIntent.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/superfish.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/jquery.ajaxchimp.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/owl.carousel.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/owl-carousel-thumb.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/jquery.sticky.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/jquery.nice-select.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/parallax.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/waypoints.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/wow.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/jquery.counterup.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/mail-script.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/main.js')}}"></script>
+</body>
+
+</html>
